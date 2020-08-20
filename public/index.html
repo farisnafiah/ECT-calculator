@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="style.css">
+  <title>Server Side Calculator</title>
+</head>
+
+<body>
+  <div id="container">
+
+    <label for="variable">Choose variable:</label>
+
+    <div class="input-sizing">
+      <div class="frequencyInput">
+        <label>10^a</label>
+        <input id="a" type="text" value=0><br />
+        <label>10^b</label>
+        <input id="b" type="text" value=6><br />
+        <label>Samples</label>
+        <input id="n" type="text" value=61><br /><br>
+      </div>
+
+      <div class="coilInput">
+        <label>Inner Radius, mm</label>
+        <input id="r1" type="text" value=11.3><br />
+        <label>Outer radius, mm</label>
+        <input id="r2" type="text" value=12.3><br />
+        <label>Coil offset, mm</label>
+        <input id="z1" type="text" value=0.6><br />
+        <label>Coil height, mm</label>
+        <input id="z2" type="text" value=7.2><br />
+        <label>Coil turns</label>
+        <input id="wireTurn" type="text" value=804><br />
+        <label>Coil current, A</label>
+        <input id="cur" type="text" value=1><br /><br>
+      </div>
+
+      <!-- <select name="variable" id="variable" onchange="hideDiv(event)">
+        <option disabled selected>Variable</option>
+        <option value="0">Conductivity</option>
+        <option value="1">Permeability</option>
+        <option value="2">Thickness</option>
+      </select> -->
+
+      <div>
+        <select>
+          <option>Choose variable</option>
+          <option value="conductivity">Conductivity</option>
+          <option value="permeability">Permeability</option>
+          <option value="thickness">Thickness</option>
+        </select>
+      </div>
+      <div class="conductivity box">
+        <label>Cond 1 start, MS/m</label>
+        <input id="con1-start" type="text" value=10><br>
+        <label>Cond 1 end, MS/m</label>
+        <input id="con1-end" type="text" value=17><br>
+        <label>Cond 1 step, MS/m</label>
+        <input id="con1-step" type="text" value=2><br>
+      </div>
+      <div class="permeability box">
+        <label>mr 1 start</label>
+        <input id="mr1-start" type="text" value=1><br>
+        <label>mr 1 end</label>
+        <input id="mr1-end" type="text" value=4><br>
+        <label>mr 1 step</label>
+        <input id="mr1-step" type="text" value=1><br>
+      </div>
+      <div class="thickness box">
+        <label>d 1 start, mm</label>
+        <input id="d-start" type="text" value=1><br>
+        <label>d 1 end, mm</label>
+        <input id="d-end" type="text" value=4><br>
+        <label>d 1 step, mm</label>
+        <input id="d-step" type="text" value=1><br>
+      </div>
+
+      <div class="mat1Input">
+        <div id="con1-div" class="conductivity bbox">
+          <label>Sample 1 cond, MS/m</label>
+          <input id="con1" type="text" value=34><br />
+        </div>
+        <div id="mr1-div" class="permeability bbox">
+          <label>Sample 1 mr</label>
+          <input id="mr1" type="text" value=1.0><br />
+        </div>
+        <div id="d-div" class="thickness bbox">
+          <label>Sample 1 thickness</label>
+          <input id="d" type="text" value=1.5><br /><br>
+        </div>
+      </div>
+
+      <div id="buttonsDiv" class="left">
+        <button id="submitButton">Calculate</button>
+      </div>
+    </div>
+
+    <div class="canvas-sizing">
+      <canvas id="myChart" width="600" height="400"></canvas>
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+  <script src="client1.js"></script>
+</body>
+
+</html>
