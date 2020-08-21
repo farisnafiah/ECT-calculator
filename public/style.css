@@ -1,4 +1,129 @@
+body {
+  background-color: #eeeeee;
+  color: #272343;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+nav {
+  padding: 5px 50px;
+  margin-bottom: 0;
+  background-color: #bae8e8;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-brand a{
+  text-decoration: none;
+  color: #272343;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.navbar-right {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.navbar-right li {
+  padding: 15px;
+}
+
+.navbar-right a {
+  text-decoration: none;
+  color: #272343;
+  letter-spacing: 5px;
+  font-size: 12px;
+}
+
+.navbar-right a:hover {
+  text-decoration: none;
+  color: #272e4f;
+}
+
+.container {
+  margin: 50px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.input-div {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.inputTitle {
+  margin: 0 0 10px;
+}
+
+.inputSubtitle {
+  margin: 0 0 10px;
+}
+
+.input-manipulatedV-select {
+  appearance: none;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+}
+
+.inputSubsubtitle {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.italicisedV {
+  color: red;
+}
+
+.buttonsDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font-family: 'Roboto Mono', monospace;
+  color: #272343;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin: 2px 0;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  background-color: #bae8e8;
+  width: 150px;
+  height: 55px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+}
+
 .canvas-sizing {
-  width: 700px;
+  width: 600px;
   height: 500px;
+  display: inline-block;
 }
