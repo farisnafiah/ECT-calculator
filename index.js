@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const EctSolution = require("./Ect-solution.js");
 
-const port = provess.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const app = express();
 app.use(bodyParser.urlencoded({
