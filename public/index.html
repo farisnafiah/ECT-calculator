@@ -15,7 +15,7 @@
         <p class="navbar-brand"><a href="/">Hall-effect ECT calculator</a></p>
       </div>
       <ul class="navbar-right">
-        <li id="about"><a href="/about">ABOUT US</a></li>
+        <li id="about"><a href="/about">ABOUT</a></li>
         <li id="contact"><a href="/contact">CONTACT US</a></li>
       </ul>
     </div>
@@ -24,99 +24,128 @@
 
 <body>
   <div class="container">
-
-    <div class="input-container">
-      <div class="input-freq-container input-div">
-        <h3 class="inputTitle">Excitation frequency</h3>
-        <h5 class="inputSubtitle">(x-axis data)</h3>
-        <label class="inputSubsubtitle">Frequencies spaced evenly on a log scale, from 10<sup><i class="italicisedV">a</i></sup> to 10<sup><i class="italicisedV">b</i></sup>, for <i class="italicisedV">n</i> number of samples:</label>
-        <div class="frequencyInput">
-          <label>a</label>
-          <input id="a" type="text" value=0><br />
-          <label>b</label>
-          <input id="b" type="text" value=6><br />
-          <label>n</label>
-          <input id="n" type="text" value=61><br /><br>
+    <div class="flexbox-container">
+      <div class="flexbox-item">
+        <div class="container-inputTitle">
+          <h3 class="inputTitle">Parameter reference</h3>
+          <h5 class="inputSubtitle">[Probe type: Hall-effect ECT]</h5>
+          <label class="inputSubsubtitle">Model here assumes a circular coil with hall-effect sensing unit at (r=0 mm, <i class="italicisedV">z<sub>1</sub></i> mm)</label>
         </div>
-      </div>
-
-      <div class="input-fixedV-container input-div">
-        <h3 class="inputTitle">Coil parameters</h3>
-        <h5 class="inputSubtitle">(lines data)</h5>
-        <label class="inputSubsubtitle">Fixed variables:</label>
-        <div class="coilInput">
-          <label>Inner Radius, mm</label>
-          <input id="r1" type="text" value=11.3><br />
-          <label>Outer radius, mm</label>
-          <input id="r2" type="text" value=12.3><br />
-          <label>Coil offset, mm</label>
-          <input id="z1" type="text" value=0.6><br />
-          <label>Coil height, mm</label>
-          <input id="z2" type="text" value=7.2><br />
-          <label>Coil turns</label>
-          <input id="wireTurn" type="text" value=804><br />
-          <label>Coil current, A</label>
-          <input id="cur" type="text" value=1><br />
-        </div>
-      </div>
-
-      <div class="input-manipulatedV-container input-div">
-        <h3 class="inputTitle">Sample properties</h3>
-        <h5 class="inputSubtitle">(lines data)</h5>
-        <label class="inputSubsubtitle">Creates <span id="sampleProp"></span> starting from <i class="italicisedV">x</i> <span class="sampleProp-unit"></span> to <i class="italicisedV">y</i> <span class="sampleProp-unit"></span> at increments of <i class="italicisedV">z</i> <span class="sampleProp-unit"></span> </label>
-        <div>
-          <select class="input-manipulatedV-select">
-            <option value="conductivity">Conductivity</option>
-            <option value="permeability">Permeability</option>
-            <option value="thickness">Thickness</option>
-          </select>
-        </div>
-        <div class="conductivity box">
-          <label>x, MS/m</label>
-          <input id="con1-start" type="text" value=10><br>
-          <label>y, MS/m</label>
-          <input id="con1-end" type="text" value=1000><br>
-          <label>z, MS/m</label>
-          <input id="con1-step" type="text" value=200><br>
-        </div>
-        <div class="permeability box">
-          <label>x</label>
-          <input id="mr1-start" type="text" value=1><br>
-          <label>y</label>
-          <input id="mr1-end" type="text" value=4><br>
-          <label>z</label>
-          <input id="mr1-step" type="text" value=1><br>
-        </div>
-        <div class="thickness box">
-          <label>x, mm</label>
-          <input id="d-start" type="text" value=1><br>
-          <label>y, mm</label>
-          <input id="d-end" type="text" value=4><br>
-          <label>z, mm</label>
-          <input id="d-step" type="text" value=1><br>
-        </div>
-        <div class="mat1Input">
-          <br>
-          <div id="con1-div" class="conductivity bbox">
-            <label>Conductivity, MS/m</label>
-            <input id="con1" type="text" value=34><br />
-          </div>
-          <div id="mr1-div" class="permeability bbox">
-            <label>Relative permeability</label>
-            <input id="mr1" type="text" value=1.0><br />
-          </div>
-          <div id="d-div" class="thickness bbox">
-            <label>Thickness, mm</label>
-            <input id="d" type="text" value=1.5><br /><br>
+        <div class="container-input">
+          <div class="input-setup">
+            <img src="setup.png" alt="img-src" class="input-setup-img" >
           </div>
         </div>
       </div>
-
+      <div class="flexbox-item">
+        <div class="container-inputTitle">
+          <h3 class="inputTitle">Excitation frequency</h3>
+          <h5 class="inputSubtitle">(x-axis data)</h3>
+            <label class="inputSubsubtitle">Frequencies spaced evenly on a log scale, from 10<sup><i class="italicisedV">a</i></sup> to 10<sup><i class="italicisedV">b</i></sup>, for <i class="italicisedV">n</i> number of samples:</label>
+        </div>
+        <div class="container-input container-input-frequency">
+            <label>a</label>
+            <input id="a" type="text" value=0>
+            <label>b</label>
+            <input id="b" type="text" value=6>
+            <label>n</label>
+            <input id="n" type="text" value=61>
+        </div>
+      </div>
+      <div class="flexbox-item">
+        <div class="container-inputTitle">
+          <h3 class="inputTitle">Coil parameters</h3>
+          <h5 class="inputSubtitle">(lines data)</h5>
+          <label class="inputSubsubtitle">Fixed variables:</label>
+        </div>
+        <div class="container-input container-input-coil">
+          <div class="container-input-coil-1">
+            <label>r<sub>1</sub>, mm</label>
+            <input id="r1" type="text" value=11.3>
+            <label>r<sub>2</sub>, mm</label>
+            <input id="r2" type="text" value=12.3>
+            <label>z<sub>1</sub>, mm</label>
+            <input id="z1" type="text" value=0.6>
+            <label>z<sub>2</sub>, mm</label>
+            <input id="z2" type="text" value=7.2>
+          </div>
+          <div class="container-input-coil-1">
+            <label>Coil turns</label>
+            <input id="wireTurn" type="text" value=804>
+            <label>Coil current, A</label>
+            <input id="cur" type="text" value=1>
+          </div>
+        </div>
+      </div>
+      <div class="flexbox-item">
+        <div class="container-inputTitle">
+          <h3 class="inputTitle">Sample properties</h3>
+          <h5 class="inputSubtitle">(lines data)</h5>
+          <label class="inputSubsubtitle">Creates <span id="sampleProp"></span> starting from <i class="italicisedV">x</i> <span class="sampleProp-unit"></span> to <i class="italicisedV">y</i> <span class="sampleProp-unit"></span> at increments of <i
+              class="italicisedV">z</i> <span class="sampleProp-unit"></span> </label>
+        </div>
+        <div class="container-input">
+          <div>
+            <select class="input-manipulatedV-select">
+              <option value="Conductivity">Conductivity</option>
+              <option value="Permeability">Permeability</option>
+              <option value="Thickness">Thickness</option>
+            </select>
+          </div>
+          <div class="Conductivity box">
+            <label>x, MS/m</label>
+            <input id="con1-start" type="text" value=25><br>
+            <label>y, MS/m</label>
+            <input id="con1-end" type="text" value=45><br>
+            <label>z, MS/m</label>
+            <input id="con1-step" type="text" value=5><br>
+          </div>
+          <div class="Permeability box">
+            <label>x</label>
+            <input id="mr1-start" type="text" value=1><br>
+            <label>y</label>
+            <input id="mr1-end" type="text" value=4><br>
+            <label>z</label>
+            <input id="mr1-step" type="text" value=1><br>
+          </div>
+          <div class="Thickness box">
+            <label>x, mm</label>
+            <input id="d-start" type="text" value=1><br>
+            <label>y, mm</label>
+            <input id="d-end" type="text" value=4><br>
+            <label>z, mm</label>
+            <input id="d-step" type="text" value=1><br>
+          </div>
+          <div class="mat1Input">
+            <br>
+            <div id="con1-div" class="Conductivity bbox">
+              <label><i>&sigma;</i>, MS/m</label><br />
+              <input id="con1" type="text" value=34><br />
+            </div>
+            <div id="mr1-div" class="Permeability bbox">
+              <label><i>&mu;<sub>r</sub></i></label><br />
+              <input id="mr1" type="text" value=1.0><br />
+            </div>
+            <div id="d-div" class="Thickness bbox">
+              <label><i>d</i>, mm</label><br />
+              <input id="d" type="text" value=1.5><br />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="buttonsDiv">
-      <button id="submitButton" class="button">Calculate</button>
-      <button id="deleteButton" class="button">Clear both chart</button>
+    <div class="container-progress">
+      <div class="buttonsDiv">
+        <button id="submitButton" class="button">Calculate</button>
+        <button id="deleteButton" class="button">Clear both chart</button>
+      </div>
+      <div class="progress">
+        <p style="visibility: hidden;">PROGRESS:</p>
+        <div class="progressBar">
+          <div class="loader"></div>
+        </div>
+      </div>
     </div>
 
     <div class="canvas-sizing">
@@ -128,6 +157,14 @@
     </div>
 
   </div>
+
+
+  <div class="footer">
+    <p>Made by Faris Nafiah</p>
+  </div>
+
+
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>

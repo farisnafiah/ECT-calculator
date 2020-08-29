@@ -1,3 +1,4 @@
+$('.progressBar').hide();
 const chartColors = [
   "#1f77b4",
   "#ff7f0e",
@@ -96,13 +97,13 @@ function getInputValueAndCalculate() {
 
   mVariable = math.range(parseInt($('#con1-start').val()), parseInt($('#con1-end').val()), parseInt($('#con1-step').val()))._data;
 
-  if (chosenV === "conductivity") {
+  if (chosenV === "Conductivity") {
     mVariable = math.range(parseInt($('#con1-start').val()), parseInt($('#con1-end').val()), parseInt($('#con1-step').val()))._data;
     mat1params = {
       mr1: parseInt($('#mr1').val()),
       d: parseInt($('#d').val())
     };
-  } else if (chosenV === "permeability") {
+  } else if (chosenV === "Permeability") {
     mVariable = math.range(parseInt($('#mr1-start').val()), parseInt($('#mr1-end').val()), parseInt($('#mr1-step').val()))._data;
     mat1params = {
       con1: parseInt($('#con1').val()),
@@ -131,15 +132,17 @@ function getInputValueAndCalculate() {
     chosenV: chosenV
   };
 
+  $('.progressBar').show();
+
   $.ajax({
       method: 'POST',
       url: '/calculation1',
-      data: data2Send
-      
-    })
-    .then(
-      response => {
-        let responseParsed = JSON.parse(response);
+      data: data2Send,
+      success: function() {
+      },
+      complete: function(response) {
+        $('.progressBar').hide();
+        let responseParsed = JSON.parse(response.responseText);
         myChartConfig.data.labels = responseParsed.f;
         myChartConfig2.data.labels = responseParsed.f;
 
@@ -163,13 +166,12 @@ function getInputValueAndCalculate() {
           };
           updateChart(myChart2, myChartConfig2, newDataset2);
         });
-
       }
-    )
+
+    })
 };
 
 function deleteBothChart() {
-  console.log("kjasbv");
   myChartConfig.data.datasets = [];
   myChart.update();
   myChartConfig2.data.datasets = [];
@@ -191,14 +193,14 @@ $("select").change(function() {
     $(".bbox").not("." + optionValue).show();
     $(".bbox." + optionValue).hide();
 
-    if (optionValue === "conductivity") {
-      $("#sampleProp").html(optionValue + " values");
+    if (optionValue === "Conductivity") {
+      $("#sampleProp").html("<i>&sigma;</i> values");
       $(".sampleProp-unit").html(" MS/m");
-    } else if (optionValue === "thickness") {
-      $("#sampleProp").html(optionValue + " values");
+    } else if (optionValue === "Thickness") {
+      $("#sampleProp").html("<i>d</i> values");
       $(".sampleProp-unit").html(" mm")
     } else {
-      $("#sampleProp").html("relative " + optionValue + " values");
+      $("#sampleProp").html("</i>&mu;<sub>r</sub></i> values");
       $(".sampleProp-unit").html("")
     }
 

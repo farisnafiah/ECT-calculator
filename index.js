@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 
 const EctSolution = require("./Ect-solution.js");
 
-const port = 3000;
+const port = provess.env.PORT || 3000;
 
 const app = express();
 app.use(bodyParser.urlencoded({
@@ -50,6 +50,7 @@ app.post('/calculation1', (req, res) => {
     return f[index + 1] = f[index] * (Math.pow(10, ((b - a) / (n - 1))))
   })
   f[f.length - 1] = Math.pow(10, b);
+
   ectSoln1.f = f;
   ectSoln1.r1 = r1 * mm;
   ectSoln1.r2 = r2 * mm;
@@ -60,80 +61,40 @@ app.post('/calculation1', (req, res) => {
 
   let result;
 
-  // if (chosenV === "conductivity") {
-  //   ectSoln1.mr1 = mat1params.mr1;
-  //   ectSoln1.d = mat1params.d*mm;
-  //
-  //   result = mVariable.forEach((mV) => {
-  //     ectSoln1.con1 = mV*megaSm;
-  //     return ectSoln1.getBz();
-  //   });
-  // }
-  // else if (chosenV === "permeability"){
-  //   ectSoln1.con1 = mat1params.con1*megaSm;
-  //   ectSoln1.d = mat1params.d*mm;
-  //
-  //   result = mVariable.forEach((mV) => {
-  //     ectSoln1.mr1 = mV;
-  //     return ectSoln1.getBz();
-  //   });
-  // }
-  // else {
-  //   ectSoln1.con1 = mat1params.con1*megaSm;
-  //   ectSoln1.mr1 = mat1params.mr1;
-  //
-  //   result = mVariable.forEach((mV) => {
-  //     ectSoln1.d = mV*mm;
-  //     console.log(ectSoln1.d);
-  //     return ectSoln1.getBz();
-  //   });
-  // }
-
-  // if (chosenV === "conductivity") {
-  // ectSoln1.con1 = mat1params.con1 * megaSm;
-  // ectSoln1.mr1 = mat1params.mr1;
-
-  // result = mVariable.map((mV) => {
-  //   ectSoln1.d = mV * mm;
-  //   return ectSoln1.getBz();
-  // });
-  // }
-
-  var do_thing;
-  if (chosenV === "conductivity") {
-    do_thing = () => {
+  function calcBz() {
+    if (chosenV === "Conductivity") {
       ectSoln1.mr1 = mat1params.mr1;
-      ectSoln1.d = mat1params.d *mm;
-
+      ectSoln1.d = mat1params.d * mm;
       result = mVariable.map((mV) => {
         ectSoln1.con1 = mV * megaSm;
         return ectSoln1.getBz();
       });
-    };
-  } else if (chosenV === "permeability") {
-    do_thing = () => {
-      ectSoln1.con1 = mat1params.con1 * megaSm;
-      ectSoln1.d = mat1params.d *mm;
 
+      return result;
+
+    } else if (chosenV === "Permeability") {
+      ectSoln1.con1 = mat1params.con1 * megaSm;
+      ectSoln1.d = mat1params.d * mm;
       result = mVariable.map((mV) => {
         ectSoln1.mr1 = mV;
         return ectSoln1.getBz();
       });
-    };
-  } else {
-    do_thing = () => {
+
+      return result;
+
+    } else {
       ectSoln1.con1 = mat1params.con1 * megaSm;
       ectSoln1.mr1 = mat1params.mr1;
-
       result = mVariable.map((mV) => {
-        ectSoln1.d = mV*mm;
+        ectSoln1.d = mV * mm;
         return ectSoln1.getBz();
       });
-    };
+
+    }
   }
 
-  do_thing();
-  
+  result = calcBz();
+
   res.send(JSON.stringify({
     f: f,
     re: result[0].re,
