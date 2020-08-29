@@ -90,6 +90,8 @@ app.post('/calculation1', (req, res) => {
         return ectSoln1.getBz();
       });
 
+      return result;
+
     }
   }
 
