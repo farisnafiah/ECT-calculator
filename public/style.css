@@ -1,5 +1,5 @@
 body {
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
   color: #272343;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
@@ -146,9 +146,10 @@ input {
 }
 
 .input-manipulatedV-select {
-  appearance: none;
+  /* appearance: none; */
+  /* background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right; */
   width: 130px;
-  padding: 5px 35px 5px 5px;
+  padding: 5px 5px 5px 5px;
   font-size: 16px;
 }
 
@@ -198,7 +199,7 @@ input {
 
 .loader {
   margin: auto;
-  border: 16px solid white;
+  border: 16px solid #eeeeee;
   border-top: 16px solid #3498db; /* Blue */
   border-radius: 50%;
   width: 20px;

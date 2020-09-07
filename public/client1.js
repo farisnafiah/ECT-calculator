@@ -95,38 +95,38 @@ function getInputValueAndCalculate() {
   let mVariable;
   let mat1params;
 
-  mVariable = math.range(parseInt($('#con1-start').val()), parseInt($('#con1-end').val()), parseInt($('#con1-step').val()))._data;
+  mVariable = math.range(parseFloat($('#con1-start').val()), parseFloat($('#con1-end').val()), parseFloat($('#con1-step').val()))._data;
 
   if (chosenV === "Conductivity") {
-    mVariable = math.range(parseInt($('#con1-start').val()), parseInt($('#con1-end').val()), parseInt($('#con1-step').val()))._data;
+    mVariable = math.range(parseFloat($('#con1-start').val()), parseFloat($('#con1-end').val()), parseFloat($('#con1-step').val()))._data;
     mat1params = {
-      mr1: parseInt($('#mr1').val()),
-      d: parseInt($('#d').val())
+      mr1: parseFloat($('#mr1').val()),
+      d: parseFloat($('#d').val())
     };
   } else if (chosenV === "Permeability") {
-    mVariable = math.range(parseInt($('#mr1-start').val()), parseInt($('#mr1-end').val()), parseInt($('#mr1-step').val()))._data;
+    mVariable = math.range(parseFloat($('#mr1-start').val()), parseFloat($('#mr1-end').val()), parseFloat($('#mr1-step').val()))._data;
     mat1params = {
-      con1: parseInt($('#con1').val()),
-      d: parseInt($('#d').val())
+      con1: parseFloat($('#con1').val()),
+      d: parseFloat($('#d').val())
     };
   } else {
-    mVariable = math.range(parseInt($('#d-start').val()), parseInt($('#d-end').val()), parseInt($('#d-step').val()))._data;
+    mVariable = math.range(parseFloat($('#d-start').val()), parseFloat($('#d-end').val()), parseFloat($('#d-step').val()))._data;
     mat1params = {
-      mr1: parseInt($('#mr1').val()),
-      con1: parseInt($('#con1').val())
+      mr1: parseFloat($('#mr1').val()),
+      con1: parseFloat($('#con1').val())
     };
   }
 
   let data2Send = {
-    a: parseInt($('#a').val()),
-    b: parseInt($('#b').val()),
-    n: parseInt($('#n').val()),
-    r1: parseInt($('#r1').val()),
-    r2: parseInt($('#r2').val()),
-    z1: parseInt($('#z1').val()),
-    z2: parseInt($('#z2').val()),
-    wireTurn: parseInt($('#wireTurn').val()),
-    cur: parseInt($('#cur').val()),
+    a: parseFloat($('#a').val()),
+    b: parseFloat($('#b').val()),
+    n: parseFloat($('#n').val()),
+    r1: parseFloat($('#r1').val()),
+    r2: parseFloat($('#r2').val()),
+    z1: parseFloat($('#z1').val()),
+    z2: parseFloat($('#z2').val()),
+    wireTurn: parseFloat($('#wireTurn').val()),
+    cur: parseFloat($('#cur').val()),
     mVariable: mVariable,
     mat1params: mat1params,
     chosenV: chosenV
@@ -148,8 +148,20 @@ function getInputValueAndCalculate() {
 
         responseParsed.result.forEach((resul, index) => {
 
+          var unit2Insert = (chosenV) => (
+            chosenV === "Thickness" ? " mm"
+            : chosenV === "Conductivity" ? " "
+            : ""
+          );
+
+          var symbol2Insert = (chosenV) => (
+            chosenV === "Thickness" ? " d"
+            : chosenV === "Conductivity" ? " σ"
+            : "μ\u1D63"
+          );
+
           var newDataset = {
-            label: data2Send.chosenV + " " + data2Send.mVariable[index],
+            label: symbol2Insert(data2Send.chosenV) + "=" + data2Send.mVariable[index] + unit2Insert(data2Send.chosenV),
             backgroundColor: chartColors[myChartConfig.data.datasets.length % chartColors.length],
             borderColor: chartColors[myChartConfig.data.datasets.length % chartColors.length],
             data: resul.im,
@@ -158,7 +170,7 @@ function getInputValueAndCalculate() {
           updateChart(myChart, myChartConfig, newDataset);
 
           var newDataset2 = {
-            label: data2Send.chosenV + " " + data2Send.mVariable[index],
+            label: symbol2Insert(data2Send.chosenV) + "=" + data2Send.mVariable[index] + unit2Insert(data2Send.chosenV),
             backgroundColor: chartColors[myChartConfig2.data.datasets.length % chartColors.length],
             borderColor: chartColors[myChartConfig2.data.datasets.length % chartColors.length],
             data: resul.re,

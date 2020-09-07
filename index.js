@@ -31,15 +31,15 @@ let ectSoln1 = new EctSolution({
 }, [], 100);
 
 app.post('/calculation1', (req, res) => {
-  let a = parseInt(req.body.a),
-    b = parseInt(req.body.b),
-    n = parseInt(req.body.n);
-  let r1 = parseInt(req.body.r1),
-    r2 = parseInt(req.body.r2),
-    z1 = parseInt(req.body.z1),
-    z2 = parseInt(req.body.z2);
-  let wireTurn = parseInt(req.body.wireTurn),
-    cur = parseInt(req.body.cur);
+  let a = parseFloat(req.body.a),
+    b = parseFloat(req.body.b),
+    n = parseFloat(req.body.n);
+  let r1 = parseFloat(req.body.r1),
+    r2 = parseFloat(req.body.r2),
+    z1 = parseFloat(req.body.z1),
+    z2 = parseFloat(req.body.z2);
+  let wireTurn = parseFloat(req.body.wireTurn),
+    cur = parseFloat(req.body.cur);
   let chosenV = req.body.chosenV,
     mVariable = req.body.mVariable,
     mat1params = req.body.mat1params;

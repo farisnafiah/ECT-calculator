@@ -5,9 +5,7 @@ const maths  = require('mathjs');
 class EctSolution {
 
   constructor (coilParams, mat1Params, mat2Params, frequency, ns) {
-    // coilParams: r1, r2, z1, z2, wireTurn, cur
-    // mat1Params: con1, mr1, d
-    // mat2Params: con2, mr2
+
     this.r1 = coilParams.r1;
     this.r2 = coilParams.r2;
     this.z1 = coilParams.z1;
@@ -26,12 +24,11 @@ class EctSolution {
   getBz() {
     const h=10*this.r2, z=this.z1, omega=maths.dotMultiply(this.f, (2*Math.PI)), wireTurnsDensity=this.wireTurn*this.cur/((this.r2-this.r1)*(this.z2-this.z1));
     const coef=Math.PI*4.0e-7*wireTurnsDensity;
-    let q = maths.divide(J1root.slice(0,this.ns), h);
+    let q = maths.divide(J1root.slice(0,this.ns+1), h);
 
     let eqz_ = maths.subtract(maths.exp(maths.dotMultiply(q, -1*(this.z1-z))), maths.exp(maths.dotMultiply(q, -1*(this.z2-z))));
     let eqz = maths.subtract(maths.exp(maths.dotMultiply(q, -1*(this.z1+z))), maths.exp(maths.dotMultiply(q, -1*(this.z2+z))));
 
-    // let k=[...Array(1002).keys()];
     let nu = maths.chain([...Array(1002).keys()])
                   .dotMultiply(2)
                   .add(1)
@@ -54,7 +51,6 @@ class EctSolution {
     let oros = maths.chain(jx).dotDivide(q).dotDivide(maths.dotPow(bes, 2)).done();
 
     const j2 = maths.complex('i');
-
     var dz = [];
     for (var i = 0; i < this.f.length; i++) {
       var p2 = maths.sqrt(maths.chain(q)
@@ -85,7 +81,8 @@ class EctSolution {
 
       var orosf = maths.dotMultiply(oros, maths.add(eqz, maths.dotMultiply(eqz, refl)));
 
-      dz.push(maths.dotMultiply(maths.sum(orosf),coef));
+      dz.push(maths.dotMultiply(maths.dotMultiply(maths.sum(orosf),coef), 1e6));
+
     }
 
     return {re: dz.map((val)=>(val.re)), im: dz.map((val)=>(val.im))};
